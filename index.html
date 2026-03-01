@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Touch Homoeo Clinic</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:#f4fbfb;
+color:#333
+}
+
+header{
+background:#e0f2f1;
+text-align:center;
+padding:20px
+}
+
+header h1{
+margin:0;
+color:#00695c
+}
+
+header p{
+margin:5px 0;
+color:#00796b
+}
+
+.container{
+padding:20px;
+text-align:center
+}
+
+.book-btn{
+background:#00796b;
+color:#fff;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+display:inline-block;
+margin-top:15px;
+transition:.3s
+}
+
+.book-btn:hover{
+background:#004d40
+}
+
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px
+}
+
+form{
+background:#fff;
+padding:20px;
+border-radius:8px;
+width:100%;
+max-width:400px
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:14px
+}
+
+button{
+background:#00796b;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+border-radius:5px;
+cursor:pointer;
+font-size:15px
+}
+
+button:hover{
+background:#004d40
+}
+
+#success{
+display:none;
+margin-top:20px;
+background:#e8f5e9;
+padding:15px;
+border-radius:6px;
+color:#2e7d32
+}
+
+#whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25d366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 2px 10px rgba(0,0,0,.3);
+cursor:pointer
+}
+
+#whatsapp img{
+width:30px
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Divine Touch Homoeo Clinic</h1>
+<p>Turning Hope to Reality</p>
+<p>Halol, Gujarat | +91 70160 53580</p>
+</header>
+
+<div class="container">
+<h2>Book Your Appointment Online</h2>
+
+<div class="book-btn" onclick="openForm()">Book Appointment</div>
+
+<div id="success">
+Booking Done! Divine Touch Homoeo Clinic will contact you on WhatsApp to confirm.
+<br><br>
+<a href="https://wa.me/917016053580" target="_blank">Chat on WhatsApp</a>
+</div>
+
+</div>
+
+<div id="popup">
+<form id="gform">
+
+<h3>Appointment Details</h3>
+
+<input type="text" id="name" placeholder="Patient Name" required>
+
+<input type="tel" id="phone" placeholder="Phone Number" required pattern="[0-9]{10}">
+
+<textarea id="address" placeholder="Patient Address" required></textarea>
+
+<input type="email" id="email" placeholder="Patient Email Address" required>
+
+<textarea id="problem" minlength="15" placeholder="Explain Your Problem (minimum 15 characters)" required></textarea>
+
+<button type="submit">Submit Booking</button>
+<br><br>
+<button type="button" onclick="closeForm()">Cancel</button>
+
+</form>
+</div>
+
+<div id="whatsapp" onclick="location.href='https://wa.me/917016053580'">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</div>
+
+<script>
+function openForm(){
+document.getElementById("popup").style.display="flex";
+}
+
+function closeForm(){
+document.getElementById("popup").style.display="none";
+}
+
+document.getElementById("gform").addEventListener("submit", function(e){
+e.preventDefault();
+
+var formURL = "YOUR_GOOGLE_FORM_FORMRESPONSE_URL";
+
+var formData = new FormData();
+
+formData.append("entry.2005620554", document.getElementById("name").value);
+formData.append("entry.927310796", document.getElementById("phone").value);
+formData.append("entry.1065046570", document.getElementById("address").value);
+formData.append("entry.1045781291", document.getElementById("email").value);
+formData.append("entry.839337160", document.getElementById("problem").value);
+
+fetch(formURL, {
+method: "POST",
+mode: "no-cors",
+body: formData
+}).then(() => {
+document.getElementById("popup").style.display="none";
+document.getElementById("success").style.display="block";
+document.getElementById("gform").reset();
+});
+});
+</script>
+
+</body>
+</html>
