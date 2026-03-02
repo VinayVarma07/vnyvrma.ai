@@ -8,10 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-body{font-family:'Poppins',sans-serif;background:#f4f9ff;color:#333}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
-/* NAVBAR */
+body{
+font-family:'Poppins',sans-serif;
+background:#f4f9ff;
+color:#333;
+}
+
+/* ================= NAVBAR ================= */
 nav{
 position:fixed;
 top:0;
@@ -24,17 +34,31 @@ padding:15px 8%;
 box-shadow:0 2px 10px rgba(0,0,0,0.05);
 z-index:1000;
 }
-nav h2{color:#0a66c2;}
-nav ul{display:flex;list-style:none;}
-nav ul li{margin-left:20px;}
+
+nav h2{
+color:#0a66c2;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:20px;
+}
+
 nav ul li a{
 text-decoration:none;
 color:#333;
 font-weight:500;
 }
-nav ul li a:hover{color:#0a66c2;}
 
-/* HERO */
+nav ul li a:hover{
+color:#0a66c2;
+}
+
+/* ================= HERO ================= */
 .hero{
 height:100vh;
 background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1600') center/cover no-repeat;
@@ -45,46 +69,67 @@ text-align:center;
 color:white;
 position:relative;
 }
+
 .hero::after{
 content:"";
 position:absolute;
-top:0;left:0;
-width:100%;height:100%;
+top:0;
+left:0;
+width:100%;
+height:100%;
 background:linear-gradient(rgba(10,102,194,0.7),rgba(0,0,0,0.5));
 }
+
 .hero-content{
 position:relative;
 z-index:2;
 max-width:700px;
+padding:20px;
 }
-.hero h1{font-size:42px;margin-bottom:15px;}
-.hero p{margin-bottom:25px;font-size:18px;}
+
+.hero h1{
+font-size:42px;
+margin-bottom:15px;
+}
+
+.hero p{
+margin-bottom:25px;
+font-size:18px;
+}
+
 .hero button{
-background:#ffffff;
+background:white;
 color:#0a66c2;
 border:none;
 padding:12px 25px;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
 font-weight:600;
 transition:0.3s;
 }
-.hero button:hover{background:#e6f0ff;}
 
-/* SECTIONS */
-section{padding:80px 8%;}
+.hero button:hover{
+background:#e6f0ff;
+}
+
+/* ================= SECTIONS ================= */
+section{
+padding:80px 8%;
+}
+
 section h2{
 text-align:center;
 margin-bottom:40px;
 color:#0a66c2;
 }
 
-/* SERVICES */
+/* ================= SERVICES ================= */
 .services{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
+
 .card{
 background:white;
 padding:25px;
@@ -93,36 +138,43 @@ box-shadow:0 5px 15px rgba(0,0,0,0.05);
 text-align:center;
 transition:0.3s;
 }
+
 .card:hover{
 transform:translateY(-5px);
 }
-.card h3{margin-bottom:10px;color:#0a66c2;}
 
-/* GALLERY */
+.card h3{
+margin-bottom:10px;
+color:#0a66c2;
+}
+
+/* ================= GALLERY ================= */
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:15px;
 }
+
 .gallery img{
 width:100%;
 border-radius:8px;
 }
 
-/* BOOKING */
+/* ================= BOOKING SECTION ================= */
 .booking{
 text-align:center;
 }
+
 .booking button{
 background:#0a66c2;
 color:white;
 border:none;
 padding:12px 25px;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
 }
 
-/* CONTACT */
+/* ================= CONTACT ================= */
 .contact{
 text-align:center;
 background:#0a66c2;
@@ -130,37 +182,84 @@ color:white;
 padding:40px;
 }
 
-/* POPUP FORM */
+/* ================= POPUP ================= */
 #popup{
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.6);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(6px);
 display:none;
 align-items:center;
 justify-content:center;
-padding:15px;
+z-index:9999;
 }
+
 form{
 background:white;
-padding:20px;
-border-radius:8px;
+padding:30px;
+border-radius:12px;
 width:100%;
-max-width:400px;
+max-width:420px;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+position:relative;
+animation:fadeIn 0.3s ease;
 }
-input,textarea{
+
+@keyframes fadeIn{
+from{transform:translateY(-20px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+form h3{
+margin-bottom:15px;
+color:#0a66c2;
+text-align:center;
+}
+
+input, textarea{
 width:100%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:5px;
+padding:12px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:14px;
 }
+
+textarea{
+resize:none;
+min-height:80px;
+}
+
 button.submit{
 background:#0a66c2;
 color:white;
+padding:12px;
+border:none;
+border-radius:6px;
+width:100%;
+margin-top:10px;
+font-weight:600;
+cursor:pointer;
 }
 
-/* WHATSAPP */
+button.submit:hover{
+background:#084c94;
+}
+
+button.cancel{
+background:#eee;
+margin-top:10px;
+padding:10px;
+width:100%;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* ================= WHATSAPP ================= */
 #whatsapp{
 position:fixed;
 bottom:20px;
@@ -173,11 +272,17 @@ display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
+z-index:10000;
 }
-#whatsapp img{width:30px;}
+
+#whatsapp img{
+width:30px;
+}
 
 @media(max-width:768px){
-.hero h1{font-size:28px;}
+.hero h1{
+font-size:28px;
+}
 }
 </style>
 </head>
@@ -205,8 +310,8 @@ cursor:pointer;
 <h2>Our Services</h2>
 <div class="services">
 <div class="card"><h3>Chronic Disease Care</h3><p>Long-term holistic treatment.</p></div>
-<div class="card"><h3>Child Health</h3><p>Gentle & safe pediatric homeopathy.</p></div>
-<div class="card"><h3>Skin Disorders</h3><p>Natural healing solutions.</p></div>
+<div class="card"><h3>Child Health</h3><p>Gentle & safe pediatric care.</p></div>
+<div class="card"><h3>Skin Disorders</h3><p>Natural and safe healing solutions.</p></div>
 </div>
 </section>
 
@@ -242,7 +347,7 @@ cursor:pointer;
 <textarea id="problem" minlength="15" placeholder="Explain Your Problem" required></textarea>
 
 <button type="submit" class="submit">Submit Booking</button>
-<button type="button" onclick="closeForm()">Cancel</button>
+<button type="button" class="cancel" onclick="closeForm()">Cancel</button>
 </form>
 </div>
 
@@ -251,15 +356,20 @@ cursor:pointer;
 </div>
 
 <script>
-function openForm(){document.getElementById("popup").style.display="flex";}
-function closeForm(){document.getElementById("popup").style.display="none";}
+function openForm(){
+document.getElementById("popup").style.display="flex";
+}
+
+function closeForm(){
+document.getElementById("popup").style.display="none";
+}
 
 document.getElementById("gform").addEventListener("submit", function(e){
 e.preventDefault();
 
 var formURL="https://docs.google.com/forms/d/e/1FAIpQLSeH-iSOegTvYNSa-S-IG96svBr_TnwXOMkZD5hH8twkj3qnmQ/formResponse";
-var formData=new FormData();
 
+var formData=new FormData();
 formData.append("entry.2005620554",name.value);
 formData.append("entry.927310796",phone.value);
 formData.append("entry.1065046570",address.value);
