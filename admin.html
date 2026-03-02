@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Touch Admin Panel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: #f4fbfb;
+}
+header {
+    background: #00695c;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+input {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+th {
+    background: #e0f2f1;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h2>Divine Touch Homoeo Clinic - Admin Panel</h2>
+</header>
+
+<div class="container">
+    <input type="text" id="search" placeholder="Search by name, phone or email..." onkeyup="searchTable()">
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Patient Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Problem</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+// 👉 Your published CSV link
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTh-gcZ5TdrpGZDMDbTZCVwwcfFVg0j5LDgw9r3Aj7qMx62ytpd2wJTn2ZVxB5hYL2C10qylP9X4Qxo/pub?output=csv";
+
+fetch(sheetURL)
+  .then(response => response.text())
+  .then(csv => {
+    const rows = csv.trim().split("\n");
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    rows.slice(1).forEach(r => {
+      const cols = r.split(",");
+      if (cols.length > 1) {
+        const tr = document.createElement("tr");
+        cols.forEach((c, idx) => {
+          const td = document.createElement("td");
+          td.textContent = c.replace(/(^"|"$)/g, "");
+          tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+      }
+    });
+  });
+
+function searchTable() {
+  const filter = document.getElementById("search").value.toLowerCase();
+  const rows = document.querySelectorAll("#dataTable tbody tr");
+
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(filter) ? "" : "none";
+  });
+}
+</script>
+
+</body>
+</html>
