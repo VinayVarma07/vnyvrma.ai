@@ -1,107 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Divine Touch Admin Panel</title>
+<title>Admin Panel | Divine Touch Homoeo Clinic</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    background: #f4fbfb;
+:root {
+    --primary: #2e8b7d;
+    --primary-light: #e8f5f3;
+    --dark: #1e2a2f;
+    --gray: #6c757d;
+    --white: #ffffff;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--primary-light);
+    min-height: 100vh;
+}
+
+/* Header */
 header {
-    background: #00695c;
-    color: white;
-    padding: 15px;
+    background: var(--white);
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     text-align: center;
 }
+
+header h1 {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+header p {
+    font-size: 13px;
+    color: var(--gray);
+}
+
+/* Container */
 .container {
     padding: 20px;
+    max-width: 1000px;
+    margin: auto;
 }
+
+/* Card */
+.card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Input */
 input {
-    padding: 10px;
     width: 100%;
-    max-width: 400px;
+    padding: 10px;
+    margin-top: 8px;
     margin-bottom: 15px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
+
+/* Button */
+button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #256e63;
+}
+
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    margin-top: 15px;
 }
+
 th, td {
+    text-align: left;
     padding: 10px;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
     font-size: 14px;
 }
+
 th {
-    background: #e0f2f1;
+    background: var(--primary-light);
+}
+
+.logout {
+    float: right;
+    background: #dc3545;
+}
+
+.logout:hover {
+    background: #b02a37;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    table {
+        font-size: 12px;
+    }
 }
 </style>
-
 </head>
 <body>
 
 <header>
-    <h2>Divine Touch Homoeo Clinic - Admin Panel</h2>
+    <h1>Divine Touch Homoeo Clinic</h1>
+    <p>Admin Dashboard</p>
 </header>
 
 <div class="container">
-    <input type="text" id="search" placeholder="Search by name, phone or email..." onkeyup="searchTable()">
 
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>Timestamp</th>
-                <th>Patient Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Email</th>
-                <th>Problem</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <!-- Login Card -->
+    <div class="card" id="loginCard">
+        <h3>Admin Login</h3>
+        <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+        <button onclick="login()">Login</button>
+        <p id="loginError" style="color:red; margin-top:10px;"></p>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden">
+
+        <div class="card">
+            <h3>Appointment Requests 
+                <button class="logout" onclick="logout()">Logout</button>
+            </h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Problem</th>
+                    </tr>
+                </thead>
+                <tbody id="appointmentTable">
+                </tbody>
+            </table>
+
+            <button style="margin-top:15px;" onclick="clearAppointments()">Clear All</button>
+        </div>
+
+    </div>
+
 </div>
 
 <script>
-// 👉 Your published CSV link
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTh-gcZ5TdrpGZDMDbTZCVwwcfFVg0j5LDgw9r3Aj7qMx62ytpd2wJTn2ZVxB5hYL2C10qylP9X4Qxo/pub?output=csv";
+const ADMIN_PASSWORD = "clinic123"; // Change this
 
-fetch(sheetURL)
-  .then(response => response.text())
-  .then(csv => {
-    const rows = csv.trim().split("\n");
-    const tableBody = document.querySelector("#dataTable tbody");
+function login() {
+    const password = document.getElementById("adminPassword").value;
+    if(password === ADMIN_PASSWORD) {
+        document.getElementById("loginCard").classList.add("hidden");
+        document.getElementById("dashboard").classList.remove("hidden");
+        loadAppointments();
+    } else {
+        document.getElementById("loginError").innerText = "Incorrect Password";
+    }
+}
 
-    rows.slice(1).forEach(r => {
-      const cols = r.split(",");
-      if (cols.length > 1) {
-        const tr = document.createElement("tr");
-        cols.forEach((c, idx) => {
-          const td = document.createElement("td");
-          td.textContent = c.replace(/(^"|"$)/g, "");
-          tr.appendChild(td);
-        });
-        tableBody.appendChild(tr);
-      }
+function logout() {
+    document.getElementById("dashboard").classList.add("hidden");
+    document.getElementById("loginCard").classList.remove("hidden");
+    document.getElementById("adminPassword").value = "";
+}
+
+function loadAppointments() {
+    const data = JSON.parse(localStorage.getItem("appointments")) || [];
+    const table = document.getElementById("appointmentTable");
+    table.innerHTML = "";
+
+    data.forEach(app => {
+        const row = `
+            <tr>
+                <td>${app.name}</td>
+                <td>${app.phone}</td>
+                <td>${app.address}</td>
+                <td>${app.problem}</td>
+            </tr>
+        `;
+        table.innerHTML += row;
     });
-  });
+}
 
-function searchTable() {
-  const filter = document.getElementById("search").value.toLowerCase();
-  const rows = document.querySelectorAll("#dataTable tbody tr");
-
-  rows.forEach(row => {
-    const text = row.textContent.toLowerCase();
-    row.style.display = text.includes(filter) ? "" : "none";
-  });
+function clearAppointments() {
+    if(confirm("Are you sure you want to delete all appointments?")) {
+        localStorage.removeItem("appointments");
+        loadAppointments();
+    }
 }
 </script>
 
