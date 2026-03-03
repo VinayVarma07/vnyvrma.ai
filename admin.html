@@ -5,221 +5,236 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel | Divine Touch Homoeo Clinic</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary: #2e8b7d;
-    --primary-light: #e8f5f3;
-    --dark: #1e2a2f;
-    --gray: #6c757d;
-    --white: #ffffff;
+:root{
+--primary:#0f766e;
+--accent:#14b8a6;
+--dark:#0f172a;
+--gray:#64748b;
+--light:#f8fafc;
+--white:#ffffff;
+--danger:#dc2626;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
-body {
-    background: var(--primary-light);
-    min-height: 100vh;
+body{
+background:var(--light);
+color:var(--dark);
+min-height:100vh;
 }
 
-/* Header */
-header {
-    background: var(--white);
-    padding: 15px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    text-align: center;
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 
-header h1 {
-    color: var(--primary);
-    font-size: 20px;
+.logo{
+font-weight:700;
+font-size:20px;
+color:var(--primary);
 }
 
-header p {
-    font-size: 13px;
-    color: var(--gray);
+/* CONTAINER */
+.container{
+padding:60px 8%;
+max-width:1100px;
+margin:auto;
 }
 
-/* Container */
-.container {
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
+/* CARD */
+.card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+margin-bottom:30px;
 }
 
-/* Card */
-.card {
-    background: var(--white);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-    animation: fadeIn 0.4s ease;
+/* LOGIN */
+.login-box{
+max-width:400px;
+margin:80px auto;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:18px;
+border:1px solid #e2e8f0;
+border-radius:8px;
+font-size:14px;
 }
 
-/* Input */
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+button{
+padding:12px 20px;
+background:var(--primary);
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
 }
 
-/* Button */
-button {
-    background: var(--primary);
-    color: var(--white);
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+button:hover{
+background:var(--accent);
 }
 
-button:hover {
-    background: #256e63;
+.logout-btn{
+background:var(--danger);
 }
 
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+.logout-btn:hover{
+background:#b91c1c;
 }
 
-th, td {
-    text-align: left;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
 }
 
-th {
-    background: var(--primary-light);
+th, td{
+padding:12px;
+text-align:left;
+border-bottom:1px solid #e2e8f0;
+font-size:14px;
 }
 
-.logout {
-    float: right;
-    background: #dc3545;
+th{
+background:#ecfdf5;
+color:var(--primary);
 }
 
-.logout:hover {
-    background: #b02a37;
+.status{
+font-size:13px;
+color:var(--gray);
 }
 
-.hidden {
-    display: none;
+.hidden{
+display:none;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-    table {
-        font-size: 12px;
-    }
+.no-data{
+text-align:center;
+color:var(--gray);
+padding:20px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+th,td{
+font-size:12px;
+}
 }
 </style>
 </head>
 <body>
 
-<header>
-    <h1>Divine Touch Homoeo Clinic</h1>
-    <p>Admin Dashboard</p>
-</header>
+<nav>
+<div class="logo">Divine Touch Homoeo Clinic</div>
+</nav>
 
-<div class="container">
+<!-- LOGIN SECTION -->
+<div id="loginSection" class="login-box card">
+<h2>Admin Login</h2>
+<input type="password" id="password" placeholder="Enter Admin Password">
+<button onclick="login()">Login</button>
+<p id="error" style="color:red; margin-top:10px;"></p>
+</div>
 
-    <!-- Login Card -->
-    <div class="card" id="loginCard">
-        <h3>Admin Login</h3>
-        <input type="password" id="adminPassword" placeholder="Enter Admin Password">
-        <button onclick="login()">Login</button>
-        <p id="loginError" style="color:red; margin-top:10px;"></p>
-    </div>
+<!-- DASHBOARD -->
+<div id="dashboard" class="container hidden">
 
-    <!-- Dashboard -->
-    <div id="dashboard" class="hidden">
+<div class="card">
+<h2>Appointment Requests</h2>
+<p class="status">Manage online booking requests below.</p>
+<br>
+<button class="logout-btn" onclick="logout()">Logout</button>
+<button style="margin-left:10px;" onclick="clearAppointments()">Clear All</button>
 
-        <div class="card">
-            <h3>Appointment Requests 
-                <button class="logout" onclick="logout()">Logout</button>
-            </h3>
+<div id="appointmentsContainer"></div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Problem</th>
-                    </tr>
-                </thead>
-                <tbody id="appointmentTable">
-                </tbody>
-            </table>
-
-            <button style="margin-top:15px;" onclick="clearAppointments()">Clear All</button>
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 <script>
-const ADMIN_PASSWORD = "Devine@1234"; // Change this
+const ADMIN_PASSWORD = "clinic123"; // Change this
 
-function login() {
-    const password = document.getElementById("adminPassword").value;
-    if(password === ADMIN_PASSWORD) {
-        document.getElementById("loginCard").classList.add("hidden");
-        document.getElementById("dashboard").classList.remove("hidden");
-        loadAppointments();
-    } else {
-        document.getElementById("loginError").innerText = "Incorrect Password";
-    }
+function login(){
+const entered = document.getElementById("password").value;
+if(entered === ADMIN_PASSWORD){
+document.getElementById("loginSection").classList.add("hidden");
+document.getElementById("dashboard").classList.remove("hidden");
+loadAppointments();
+}else{
+document.getElementById("error").innerText = "Incorrect Password";
+}
 }
 
-function logout() {
-    document.getElementById("dashboard").classList.add("hidden");
-    document.getElementById("loginCard").classList.remove("hidden");
-    document.getElementById("adminPassword").value = "";
+function logout(){
+document.getElementById("dashboard").classList.add("hidden");
+document.getElementById("loginSection").classList.remove("hidden");
+document.getElementById("password").value="";
 }
 
-function loadAppointments() {
-    const data = JSON.parse(localStorage.getItem("appointments")) || [];
-    const table = document.getElementById("appointmentTable");
-    table.innerHTML = "";
+function loadAppointments(){
+let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+let container = document.getElementById("appointmentsContainer");
 
-    data.forEach(app => {
-        const row = `
-            <tr>
-                <td>${app.name}</td>
-                <td>${app.phone}</td>
-                <td>${app.address}</td>
-                <td>${app.problem}</td>
-            </tr>
-        `;
-        table.innerHTML += row;
-    });
+if(appointments.length === 0){
+container.innerHTML = "<div class='no-data'>No appointment requests yet.</div>";
+return;
 }
 
-function clearAppointments() {
-    if(confirm("Are you sure you want to delete all appointments?")) {
-        localStorage.removeItem("appointments");
-        loadAppointments();
-    }
+let table = `
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Problem</th>
+</tr>
+</thead>
+<tbody>
+`;
+
+appointments.forEach(app=>{
+table += `
+<tr>
+<td>${app.name}</td>
+<td>${app.phone}</td>
+<td>${app.address}</td>
+<td>${app.problem}</td>
+</tr>
+`;
+});
+
+table += "</tbody></table>";
+container.innerHTML = table;
+}
+
+function clearAppointments(){
+if(confirm("Delete all appointments?")){
+localStorage.removeItem("appointments");
+loadAppointments();
+}
 }
 </script>
 
