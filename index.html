@@ -3,318 +3,1335 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Divine Touch Homoeo Clinic | Halol</title>
+<title>Divine Touch Homoeo Clinic | Premium Homeopathic Care in Halol, Gujarat</title>
+<meta name="description" content="Divine Touch Homoeo Clinic offers personalized homeopathic treatment in Halol, Gujarat. Natural healing, trusted care, real results.">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
---primary:#0f766e;
---accent:#14b8a6;
---dark:#0f172a;
---gray:#64748b;
---light:#f8fafc;
+  --primary:#0d9488;
+  --primary-dark:#0f766e;
+  --accent:#14b8a6;
+  --gold:#d4a574;
+  --dark:#0a1929;
+  --darker:#050d18;
+  --gray:#64748b;
+  --light-gray:#f1f5f9;
+  --light:#f8fafc;
+  --white:#ffffff;
+  --shadow-sm:0 2px 8px rgba(15,118,110,0.08);
+  --shadow-md:0 10px 30px rgba(15,118,110,0.12);
+  --shadow-lg:0 20px 60px rgba(15,118,110,0.18);
+  --gradient:linear-gradient(135deg,#0d9488 0%,#14b8a6 100%);
+  --gradient-soft:linear-gradient(135deg,#ecfdf5 0%,#f0fdfa 100%);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+html{scroll-behavior:smooth;}
 
 body{
-background:var(--light);
-color:var(--dark);
-line-height:1.6;
+  background:var(--light);
+  color:var(--dark);
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
-/* NAV */
+::selection{background:var(--primary);color:white;}
+
+/* ---------------- LOADER ---------------- */
+.loader{
+  position:fixed;
+  inset:0;
+  background:var(--white);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity .6s ease,visibility .6s ease;
+}
+.loader.hide{opacity:0;visibility:hidden;}
+.loader-circle{
+  width:60px;height:60px;
+  border:4px solid #e2e8f0;
+  border-top-color:var(--primary);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ---------------- NAV ---------------- */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 8%;
-background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.05);
-position:sticky;
-top:0;
-z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 6%;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(15,118,110,0.08);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  transition:.4s;
+}
+nav.scrolled{
+  padding:12px 6%;
+  background:rgba(255,255,255,0.95);
+  box-shadow:0 4px 30px rgba(0,0,0,0.06);
 }
 
 .logo{
-font-weight:700;
-font-size:20px;
-color:var(--primary);
-cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  user-select:none;
 }
+.logo-icon{
+  width:44px;height:44px;
+  background:var(--gradient);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:20px;
+  box-shadow:var(--shadow-md);
+  transition:.4s;
+}
+.logo:hover .logo-icon{transform:rotate(-10deg) scale(1.05);}
+.logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.logo-title{font-weight:800;font-size:17px;color:var(--dark);letter-spacing:-0.3px;}
+.logo-sub{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:2px;margin-top:2px;}
+
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{
+  text-decoration:none;
+  color:var(--dark);
+  font-weight:500;
+  font-size:14.5px;
+  position:relative;
+  transition:.3s;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;left:0;
+  width:0;height:2px;
+  background:var(--primary);
+  transition:.4s;
+}
+.nav-links a:hover{color:var(--primary);}
+.nav-links a:hover::after{width:100%;}
 
 .btn{
-padding:12px 22px;
-background:var(--primary);
-color:white;
-border-radius:8px;
-cursor:pointer;
-transition:.3s;
-text-decoration:none;
-display:inline-block;
+  padding:13px 26px;
+  background:var(--gradient);
+  color:white;
+  border-radius:50px;
+  cursor:pointer;
+  transition:.4s cubic-bezier(.4,0,.2,1);
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  font-size:14px;
+  border:none;
+  box-shadow:0 8px 20px rgba(15,118,110,0.25);
+  position:relative;
+  overflow:hidden;
 }
-
-.btn:hover{
-background:var(--accent);
+.btn::before{
+  content:"";
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent);
+  transition:.6s;
 }
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(15,118,110,0.35);}
+.btn:hover::before{left:100%;}
 
-/* HERO */
+.menu-toggle{display:none;font-size:24px;cursor:pointer;color:var(--dark);}
+
+/* ---------------- HERO ---------------- */
 .hero{
-padding:100px 8%;
-background:linear-gradient(to right,#ecfdf5,#ffffff);
+  padding:80px 6% 100px;
+  background:var(--gradient-soft);
+  position:relative;
+  overflow:hidden;
+  min-height:88vh;
+  display:flex;
+  align-items:center;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-200px;right:-200px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(20,184,166,0.15),transparent 70%);
+  border-radius:50%;
+  animation:float 8s ease-in-out infinite;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:-150px;left:-150px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(212,165,116,0.12),transparent 70%);
+  border-radius:50%;
+  animation:float 10s ease-in-out infinite reverse;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-30px) scale(1.05);}
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:60px;
+  align-items:center;
+  width:100%;
+  max-width:1300px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 18px;
+  background:white;
+  border-radius:50px;
+  color:var(--primary);
+  font-weight:600;
+  font-size:13px;
+  box-shadow:var(--shadow-sm);
+  margin-bottom:24px;
+  animation:fadeUp .8s ease;
+}
+.hero-badge .dot{
+  width:8px;height:8px;
+  background:#22c55e;
+  border-radius:50%;
+  animation:pulse 2s ease infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4);}
+  50%{box-shadow:0 0 0 8px rgba(34,197,94,0);}
 }
 
 .hero h1{
-font-size:42px;
-max-width:650px;
+  font-family:'Playfair Display',serif;
+  font-size:58px;
+  font-weight:700;
+  line-height:1.12;
+  color:var(--dark);
+  letter-spacing:-1.5px;
+  animation:fadeUp 1s ease .1s backwards;
+}
+.hero h1 span{
+  background:var(--gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-style:italic;
 }
 
 .hero p{
-margin-top:20px;
-color:var(--gray);
-max-width:600px;
+  margin-top:24px;
+  color:var(--gray);
+  font-size:17px;
+  max-width:540px;
+  animation:fadeUp 1s ease .25s backwards;
 }
 
-/* SECTION */
-.section{
-padding:80px 8%;
+.hero-cta{
+  display:flex;
+  gap:16px;
+  margin-top:36px;
+  flex-wrap:wrap;
+  animation:fadeUp 1s ease .4s backwards;
+}
+.btn-outline{
+  padding:13px 26px;
+  background:white;
+  color:var(--dark);
+  border:2px solid #e2e8f0;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  transition:.3s;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px);}
+
+.hero-stats{
+  display:flex;
+  gap:40px;
+  margin-top:50px;
+  padding-top:30px;
+  border-top:1px solid rgba(15,118,110,0.15);
+  animation:fadeUp 1s ease .55s backwards;
+}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  font-weight:700;
+  color:var(--primary);
+}
+.stat-label{font-size:13px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
-.section h2{
-font-size:28px;
-margin-bottom:20px;
+/* Hero Visual */
+.hero-visual{
+  position:relative;
+  animation:fadeUp 1.2s ease .3s backwards;
+}
+.hero-card{
+  background:white;
+  border-radius:24px;
+  padding:36px;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+  z-index:3;
+}
+.hero-card-img{
+  width:100%;
+  height:280px;
+  background:var(--gradient);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:90px;
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-card-img::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top right,rgba(255,255,255,0.25),transparent 60%);
+}
+.hero-card h3{font-size:20px;margin-bottom:8px;font-weight:700;}
+.hero-card p{font-size:14px;color:var(--gray);margin:0;}
+
+.floating-badge{
+  position:absolute;
+  background:white;
+  padding:16px 20px;
+  border-radius:16px;
+  box-shadow:var(--shadow-md);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  animation:floatY 4s ease-in-out infinite;
+}
+.floating-badge i{
+  width:42px;height:42px;
+  background:var(--gradient-soft);
+  color:var(--primary);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+.floating-badge h4{font-size:14px;font-weight:700;margin:0;}
+.floating-badge p{font-size:11px;color:var(--gray);margin:0;}
+
+.fb-1{top:-20px;left:-30px;animation-delay:0s;z-index:4;}
+.fb-2{bottom:30px;right:-40px;animation-delay:1.5s;z-index:4;}
+
+@keyframes floatY{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
 }
 
-.about-box{
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
+/* ---------------- SECTION COMMON ---------------- */
+.section{padding:100px 6%;position:relative;}
+.section-head{text-align:center;max-width:700px;margin:0 auto 60px;}
+.section-tag{
+  display:inline-block;
+  padding:6px 16px;
+  background:var(--gradient-soft);
+  color:var(--primary);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border-radius:50px;
+  margin-bottom:16px;
+}
+.section-head h2{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  font-weight:700;
+  color:var(--dark);
+  letter-spacing:-1px;
+  line-height:1.2;
+}
+.section-head h2 span{color:var(--primary);font-style:italic;}
+.section-head p{color:var(--gray);font-size:16px;margin-top:14px;}
+
+/* ---------------- SERVICES ---------------- */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+  max-width:1300px;
+  margin:0 auto;
+}
+.service-card{
+  background:white;
+  padding:36px 28px;
+  border-radius:20px;
+  border:1px solid #e2e8f0;
+  transition:.5s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.service-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:4px;
+  background:var(--gradient);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.5s;
+}
+.service-card:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{
+  width:60px;height:60px;
+  background:var(--gradient-soft);
+  color:var(--primary);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  margin-bottom:20px;
+  transition:.4s;
+}
+.service-card:hover .service-icon{
+  background:var(--gradient);
+  color:white;
+  transform:rotate(-8deg) scale(1.08);
+}
+.service-card h3{font-size:19px;font-weight:700;margin-bottom:10px;}
+.service-card p{font-size:14.5px;color:var(--gray);}
+
+/* ---------------- ABOUT ---------------- */
+.about-section{background:white;}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:60px;
+  align-items:center;
+  max-width:1300px;
+  margin:0 auto;
+}
+.about-img{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:var(--gradient);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:120px;
+  box-shadow:var(--shadow-lg);
+}
+.about-img::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.2),transparent 50%);
+}
+.about-exp{
+  position:absolute;
+  bottom:30px;right:30px;
+  background:white;
+  color:var(--dark);
+  padding:20px 24px;
+  border-radius:16px;
+  font-size:14px;
+  box-shadow:var(--shadow-md);
+}
+.about-exp strong{font-family:'Playfair Display',serif;font-size:36px;color:var(--primary);display:block;line-height:1;}
+
+.about-content h2{
+  font-family:'Playfair Display',serif;
+  font-size:38px;
+  font-weight:700;
+  letter-spacing:-1px;
+  line-height:1.2;
+  margin-bottom:20px;
+}
+.about-content h2 span{color:var(--primary);font-style:italic;}
+.about-content p{color:var(--gray);margin-bottom:18px;font-size:15.5px;}
+
+.feature-list{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+.feature-item{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+.feature-item i{
+  width:32px;height:32px;
+  background:var(--gradient-soft);
+  color:var(--primary);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  flex-shrink:0;
+}
+.feature-item strong{display:block;font-size:15px;margin-bottom:2px;}
+.feature-item span{font-size:13.5px;color:var(--gray);}
+
+/* ---------------- ELIGIBILITY (like screenshot) ---------------- */
+.eligibility-section{
+  background:linear-gradient(135deg,#fff7ed 0%,#fffbeb 100%);
+  position:relative;
+}
+.eligibility-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:0 auto;
+}
+.elig-card{
+  background:white;
+  padding:24px 28px;
+  border-radius:16px;
+  border:2px solid #fde68a;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.4s;
+  cursor:pointer;
+}
+.elig-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--primary);
+  box-shadow:var(--shadow-md);
+}
+.elig-num{
+  font-size:11px;
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+.elig-card h4{font-size:18px;font-weight:700;color:var(--dark);}
+.elig-card p{font-size:13px;color:var(--gray);margin-top:4px;}
+.elig-check{
+  width:36px;height:36px;
+  border:2px solid #e2e8f0;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--primary);
+  transition:.3s;
+}
+.elig-card:hover .elig-check{background:var(--primary);color:white;border-color:var(--primary);}
+
+/* ---------------- FORM SECTION (Google Form Style) ---------------- */
+.form-section{
+  background:var(--darker);
+  color:white;
+  padding:100px 6%;
+  position:relative;
+  overflow:hidden;
+}
+.form-section::before{
+  content:"";
+  position:absolute;
+  top:-200px;left:50%;
+  transform:translateX(-50%);
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(20,184,166,0.15),transparent 70%);
+  border-radius:50%;
 }
 
-/* MODAL */
-.modal{
-display:none;
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-justify-content:center;
-align-items:center;
-z-index:2000;
-padding:20px;
+.form-container{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:50px;
+  align-items:center;
+  position:relative;
+  z-index:2;
 }
 
-.modal-content{
-background:white;
-padding:35px;
-border-radius:14px;
-max-width:500px;
-width:100%;
-position:relative;
-animation:slideUp .3s ease;
+.form-info h2{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  font-weight:700;
+  line-height:1.15;
+  margin-bottom:18px;
+  letter-spacing:-1px;
 }
+.form-info h2 span{color:var(--accent);font-style:italic;}
+.form-info p{color:#94a3b8;font-size:15.5px;margin-bottom:30px;}
 
-@keyframes slideUp{
-from{transform:translateY(40px);opacity:0}
-to{transform:translateY(0);opacity:1}
+.contact-row{display:flex;flex-direction:column;gap:20px;}
+.contact-row .row{display:flex;gap:14px;align-items:center;}
+.contact-row .row i{
+  width:44px;height:44px;
+  background:rgba(20,184,166,0.15);
+  color:var(--accent);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  flex-shrink:0;
 }
+.contact-row .row .label{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:2px;}
+.contact-row .row .value{font-size:14.5px;color:white;font-weight:500;}
 
-.close{
-position:absolute;
-right:15px;
-top:10px;
-font-size:22px;
-cursor:pointer;
+/* Google Form Style Card */
+.gform-card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  color:var(--dark);
+  box-shadow:0 30px 80px rgba(0,0,0,0.4);
 }
-
-input,textarea{
-width:100%;
-padding:12px;
-margin-top:10px;
-margin-bottom:18px;
-border:1px solid #ddd;
-border-radius:8px;
-font-size:14px;
+.gform-header{
+  border-top:8px solid var(--primary);
+  padding:24px 26px 18px;
+  border-bottom:1px solid #f1f5f9;
 }
-
-textarea{
-min-height:120px;
-resize:none;
+.gform-header h3{
+  font-size:22px;
+  font-weight:500;
+  color:var(--dark);
+  margin-bottom:6px;
 }
+.gform-header p{font-size:13px;color:var(--gray);}
+.gform-required{color:#dc2626;font-size:13px;margin-top:6px;}
 
-button{
-width:100%;
-padding:14px;
-background:var(--primary);
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-font-size:15px;
+.gform-body{padding:0 26px 26px;max-height:520px;overflow-y:auto;}
+.gform-body::-webkit-scrollbar{width:6px;}
+.gform-body::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px;}
+
+.gform-field{
+  padding:20px 0;
+  border-bottom:1px solid #f1f5f9;
 }
-
-.success{
-display:none;
-margin-top:15px;
-background:#dcfce7;
-padding:15px;
-border-radius:8px;
-text-align:center;
-color:#166534;
+.gform-field:last-of-type{border-bottom:none;}
+.gform-field label{
+  display:block;
+  font-size:15px;
+  font-weight:500;
+  color:var(--dark);
+  margin-bottom:14px;
 }
+.gform-field label span{color:#dc2626;margin-left:4px;}
+.gform-field input[type="text"],
+.gform-field input[type="tel"],
+.gform-field input[type="email"],
+.gform-field textarea{
+  width:100%;
+  padding:8px 0;
+  border:none;
+  border-bottom:1.5px solid #cbd5e1;
+  font-size:14px;
+  color:var(--dark);
+  background:transparent;
+  transition:.3s;
+  font-family:'Inter',sans-serif;
+}
+.gform-field input:focus,
+.gform-field textarea:focus{
+  outline:none;
+  border-bottom-color:var(--primary);
+  border-bottom-width:2px;
+}
+.gform-field textarea{min-height:60px;resize:none;}
+.gform-field input::placeholder,
+.gform-field textarea::placeholder{color:#94a3b8;font-size:13.5px;}
 
+.gform-radio{display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;font-size:14px;}
+.gform-radio input{cursor:pointer;accent-color:var(--primary);}
+.gform-radio:hover{color:var(--primary);}
+
+.gform-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 26px;
+  background:#fafafa;
+  border-top:1px solid #f1f5f9;
+}
+.gform-submit{
+  padding:10px 26px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:.3s;
+  width:auto;
+}
+.gform-submit:hover{background:var(--primary-dark);box-shadow:0 4px 12px rgba(15,118,110,0.3);}
+.gform-clear{color:var(--primary);background:none;border:none;cursor:pointer;font-size:13px;font-weight:500;width:auto;padding:8px;}
+
+.gform-success{
+  padding:30px 26px;
+  text-align:center;
+  display:none;
+}
+.gform-success.show{display:block;animation:fadeUp .5s ease;}
+.gform-success i{font-size:48px;color:#22c55e;margin-bottom:14px;}
+.gform-success h3{font-size:20px;margin-bottom:8px;color:var(--dark);}
+.gform-success p{font-size:14px;color:var(--gray);margin-bottom:20px;}
+.gform-success .btn{padding:11px 22px;font-size:13px;}
+
+/* ---------------- TESTIMONIALS ---------------- */
+.testimonials{
+  background:white;
+  position:relative;
+  overflow:hidden;
+}
+.testi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:24px;
+  max-width:1300px;
+  margin:0 auto;
+}
+.testi-card{
+  background:var(--light);
+  padding:32px 28px;
+  border-radius:20px;
+  position:relative;
+  transition:.4s;
+  border:1px solid #e2e8f0;
+}
+.testi-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.testi-card::before{
+  content:"\201C";
+  position:absolute;
+  top:10px;right:24px;
+  font-size:80px;
+  color:var(--primary);
+  opacity:0.15;
+  font-family:'Playfair Display',serif;
+  line-height:1;
+}
+.stars{color:#fbbf24;margin-bottom:14px;font-size:14px;}
+.testi-card p{color:var(--dark);font-size:15px;line-height:1.7;font-style:italic;}
+.testi-user{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid #e2e8f0;
+}
+.testi-avatar{
+  width:48px;height:48px;
+  background:var(--gradient);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:700;
+}
+.testi-user h5{font-size:15px;font-weight:700;margin:0;}
+.testi-user span{font-size:12px;color:var(--gray);}
+
+/* ---------------- FOOTER ---------------- */
 footer{
-background:#0f172a;
-color:white;
-padding:40px 8%;
-text-align:center;
-margin-top:60px;
-font-size:14px;
+  background:var(--dark);
+  color:white;
+  padding:80px 6% 30px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:40px;
+  max-width:1300px;
+  margin:0 auto 50px;
+}
+.footer-col h4{font-size:16px;margin-bottom:20px;font-weight:700;}
+.footer-col p,.footer-col a{
+  color:#94a3b8;
+  font-size:14px;
+  text-decoration:none;
+  display:block;
+  margin-bottom:10px;
+  transition:.3s;
+}
+.footer-col a:hover{color:var(--accent);transform:translateX(4px);}
+.footer-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+.footer-logo .logo-icon{width:48px;height:48px;}
+.footer-logo .logo-title{color:white;font-size:18px;}
+.footer-social{display:flex;gap:12px;margin-top:20px;}
+.footer-social a{
+  width:40px;height:40px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  margin:0;
+  transition:.3s;
+}
+.footer-social a:hover{background:var(--primary);transform:translateY(-3px);}
+.footer-bottom{
+  text-align:center;
+  padding-top:30px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  color:#64748b;
+  font-size:13px;
 }
 
-/* WhatsApp */
+/* ---------------- WhatsApp ---------------- */
 .whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-width:56px;
-height:56px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 4px 12px rgba(0,0,0,0.3);
-transition:0.3s;
-z-index:3000;
+  position:fixed;
+  bottom:24px;right:24px;
+  background:#25D366;
+  width:60px;height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,0.5);
+  transition:.3s;
+  z-index:3000;
+  color:white;
+  font-size:28px;
+  text-decoration:none;
+  animation:wPulse 2s ease infinite;
+}
+.whatsapp:hover{transform:scale(1.1) rotate(8deg);}
+@keyframes wPulse{
+  0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.5);}
+  50%{box-shadow:0 8px 24px rgba(37,211,102,0.5),0 0 0 12px rgba(37,211,102,0.15);}
 }
 
-.whatsapp:hover{
-transform:scale(1.1);
-}
+/* ---------------- REVEAL ---------------- */
+.reveal{opacity:0;transform:translateY(40px);transition:.8s cubic-bezier(.4,0,.2,1);}
+.reveal.show{opacity:1;transform:translateY(0);}
 
-.whatsapp svg{
-width:28px;
-height:28px;
-fill:white;
+/* ---------------- RESPONSIVE ---------------- */
+@media(max-width:968px){
+  .hero-grid,.about-grid,.form-container,.footer-grid{grid-template-columns:1fr;gap:40px;}
+  .hero h1{font-size:40px;}
+  .section-head h2,.about-content h2,.form-info h2{font-size:30px;}
+  .hero{padding:60px 6% 80px;min-height:auto;}
+  .section{padding:70px 6%;}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%;left:0;
+    width:100%;
+    background:white;
+    flex-direction:column;
+    padding:24px;
+    gap:18px;
+    box-shadow:var(--shadow-md);
+  }
+  .nav-links.open{display:flex;}
+  .menu-toggle{display:block;}
+  .hero-stats{gap:20px;flex-wrap:wrap;}
+  .floating-badge{display:none;}
+  .footer-grid{text-align:center;}
+  .footer-logo{justify-content:center;}
+  .footer-social{justify-content:center;}
 }
-
-@media(max-width:768px){
-.hero h1{
-font-size:28px;
-}
+@media(max-width:520px){
+  .hero h1{font-size:32px;}
+  .section-head h2{font-size:26px;}
+  nav{padding:14px 5%;}
+  .logo-title{font-size:15px;}
+  .logo-sub{font-size:9px;}
+  .hero-stats{justify-content:space-between;width:100%;}
+  .stat-num{font-size:26px;}
 }
 </style>
 </head>
 <body>
 
-<nav>
-<div class="logo">Divine Touch Homoeo Clinic</div>
-<div class="btn" onclick="openModal()">Book Appointment</div>
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-circle"></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo" id="logo">
+    <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+    <div class="logo-text">
+      <div class="logo-title">Divine Touch</div>
+      <div class="logo-sub">Homoeo Clinic</div>
+    </div>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#eligibility">Treatments</a>
+    <a href="#appointment">Contact</a>
+  </div>
+  <a href="#appointment" class="btn"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+  <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
 </nav>
 
-<section class="hero">
-<h1>Natural Healing. Trusted Care. Real Results.</h1>
-<p>
-Divine Touch Homoeo Clinic provides compassionate and personalized homeopathic treatment in Halol, Gujarat. We focus on identifying the root cause of illness and delivering safe, natural remedies for long-term wellness.
-</p>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-badge"><span class="dot"></span> Now Accepting New Patients</div>
+      <h1>Natural Healing. <span>Trusted Care.</span> Real Results.</h1>
+      <p>Divine Touch Homoeo Clinic provides compassionate, personalized homeopathic treatment in Halol, Gujarat — addressing the root cause of illness through safe, natural remedies tailored to you.</p>
+      <div class="hero-cta">
+        <a href="#appointment" class="btn"><i class="fas fa-calendar-plus"></i> Book Free Consultation</a>
+        <a href="#services" class="btn-outline"><i class="fas fa-arrow-right"></i> Explore Treatments</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-num">5000+</div><div class="stat-label">Happy Patients</div></div>
+        <div><div class="stat-num">4.9★</div><div class="stat-label">Patient Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-badge fb-1">
+        <i class="fas fa-shield-heart"></i>
+        <div><h4>100% Natural</h4><p>Safe Remedies</p></div>
+      </div>
+      <div class="floating-badge fb-2">
+        <i class="fas fa-user-md"></i>
+        <div><h4>Expert Care</h4><p>Certified Doctor</p></div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-img"><i class="fas fa-mortar-pestle"></i></div>
+        <h3>Personalized Treatment Plans</h3>
+        <p>Every patient receives a detailed case evaluation and customized homeopathic remedy designed for long-term wellness.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-<h2>About Divine Touch Homoeo Clinic</h2>
-<div class="about-box">
-<p>
-<strong>Address:</strong> Shop No. 15, Vallabhdham Apartment, Kanjari Road, Near Bhavin Society, Halol, Gujarat – 389350.
-<br><br>
-The clinic is known for its patient-focused approach, detailed case evaluation, and customized homeopathic treatment plans. Serving patients of all age groups, the clinic supports chronic diseases, skin conditions, allergies, women’s health, and general wellness concerns.
-<br><br>
-Appointments are recommended to ensure proper consultation time and personalized care.
-</p>
-</div>
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-head reveal">
+    <span class="section-tag">Our Specialties</span>
+    <h2>Comprehensive <span>Homeopathic Care</span></h2>
+    <p>From chronic conditions to everyday wellness, we offer holistic treatment for all age groups.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-allergies"></i></div>
+      <h3>Skin & Allergies</h3>
+      <p>Effective treatment for eczema, psoriasis, acne, and seasonal allergies — restoring healthy skin naturally.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-lungs"></i></div>
+      <h3>Respiratory Care</h3>
+      <p>Long-term relief for asthma, bronchitis, sinusitis, and recurring cold without dependency on steroids.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-venus"></i></div>
+      <h3>Women's Health</h3>
+      <p>Specialized care for menstrual issues, PCOD, hormonal imbalance, and pregnancy-related concerns.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-child"></i></div>
+      <h3>Child Wellness</h3>
+      <p>Gentle, safe remedies for children — immunity building, growth issues, and behavioral concerns.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-bone"></i></div>
+      <h3>Joint & Arthritis</h3>
+      <p>Relief from chronic joint pain, rheumatoid arthritis, and spondylitis through constitutional treatment.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-brain"></i></div>
+      <h3>Mental Wellness</h3>
+      <p>Support for anxiety, depression, stress, and sleep disorders — restoring mental balance naturally.</p>
+    </div>
+  </div>
 </section>
 
-<!-- BOOKING MODAL -->
-<div id="modal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">&times;</span>
-<h2>Book Your Appointment</h2>
+<!-- ABOUT -->
+<section class="section about-section" id="about">
+  <div class="about-grid">
+    <div class="about-img reveal">
+      <i class="fas fa-leaf"></i>
+      <div class="about-exp"><strong>15+</strong> Years of Trusted Care</div>
+    </div>
+    <div class="about-content reveal">
+      <span class="section-tag">About The Clinic</span>
+      <h2>Where Tradition Meets <span>Modern Wellness</span></h2>
+      <p>Divine Touch Homoeo Clinic is known for its patient-focused approach, detailed case evaluation, and customized homeopathic treatment plans. We serve patients of all age groups with a commitment to natural, lasting healing.</p>
+      <p>📍 <strong>Shop No. 15, Vallabhdham Apartment, Kanjari Road, Near Bhavin Society, Halol, Gujarat – 389350</strong></p>
+      <div class="feature-list">
+        <div class="feature-item">
+          <i class="fas fa-check"></i>
+          <div><strong>Root-Cause Diagnosis</strong><span>We treat the source of illness, not just symptoms.</span></div>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check"></i>
+          <div><strong>Personalized Remedies</strong><span>Every treatment plan is unique to your body & lifestyle.</span></div>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check"></i>
+          <div><strong>Zero Side Effects</strong><span>100% natural medicines, safe for all ages.</span></div>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check"></i>
+          <div><strong>Follow-up Support</strong><span>Continuous care through WhatsApp consultation.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<form id="bookingForm"
-action="https://docs.google.com/forms/d/e/1FAIpQLSeH-iSOegTvYNSa-S-IG96svBr_TnwXOMkZD5hH8twkj3qnmQ/formResponse"
-method="POST"
-target="hidden_iframe">
+<!-- ELIGIBILITY / WHY CHOOSE US -->
+<section class="section eligibility-section" id="eligibility">
+  <div class="section-head reveal">
+    <span class="section-tag">Treatment Areas</span>
+    <h2>Are You Looking To <span>Heal Naturally?</span></h2>
+    <p>We treat patients with these common conditions and many more — homeopathy works gently for everyone.</p>
+  </div>
+  <div class="eligibility-grid">
+    <div class="elig-card reveal">
+      <div>
+        <div class="elig-num">NO. 1</div>
+        <h4>Chronic Diseases</h4>
+        <p>Diabetes, hypertension & more.</p>
+      </div>
+      <div class="elig-check"><i class="fas fa-check"></i></div>
+    </div>
+    <div class="elig-card reveal">
+      <div>
+        <div class="elig-num">NO. 2</div>
+        <h4>Skin Disorders</h4>
+        <p>Acne, eczema, psoriasis.</p>
+      </div>
+      <div class="elig-check"><i class="fas fa-check"></i></div>
+    </div>
+    <div class="elig-card reveal">
+      <div>
+        <div class="elig-num">NO. 3</div>
+        <h4>Allergies</h4>
+        <p>Respiratory, food, seasonal.</p>
+      </div>
+      <div class="elig-check"><i class="fas fa-check"></i></div>
+    </div>
+    <div class="elig-card reveal">
+      <div>
+        <div class="elig-num">NO. 4</div>
+        <h4>Women's Health</h4>
+        <p>PCOD, hormonal balance.</p>
+      </div>
+      <div class="elig-check"><i class="fas fa-check"></i></div>
+    </div>
+    <div class="elig-card reveal">
+      <div>
+        <div class="elig-num">NO. 5</div>
+        <h4>Joint Pain</h4>
+        <p>Arthritis, spondylitis.</p>
+      </div>
+      <div class="elig-check"><i class="fas fa-check"></i></div>
+    </div>
+    <div class="elig-card reveal">
+      <div>
+        <div class="elig-num">NO. 6</div>
+        <h4>Mental Wellness</h4>
+        <p>Stress, anxiety, sleep issues.</p>
+      </div>
+      <div class="elig-check"><i class="fas fa-check"></i></div>
+    </div>
+  </div>
+</section>
 
-<input type="text" name="entry.2005620554" placeholder="Patient Name" required>
-<input type="tel" name="entry.927310796" placeholder="Phone Number" required>
-<input type="text" name="entry.1065046570" placeholder="Patient Address" required>
-<input type="email" name="entry.1045781291" placeholder="Email Address" required>
-<textarea name="entry.839337160" placeholder="Explain Your Problem (minimum 100 characters)" minlength="100" required></textarea>
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div class="section-head reveal">
+    <span class="section-tag">Patient Stories</span>
+    <h2>Real People, <span>Real Healing</span></h2>
+    <p>Hear from patients whose lives have been transformed through homeopathic care.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"After years of struggling with chronic eczema, Divine Touch Clinic finally gave me a treatment that actually worked. My skin is clearer than ever."</p>
+      <div class="testi-user">
+        <div class="testi-avatar">PS</div>
+        <div><h5>Priya Sharma</h5><span>Patient since 2022</span></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"The doctor takes time to truly understand your case. My son's recurring cold and asthma improved dramatically within months. Highly recommended!"</p>
+      <div class="testi-user">
+        <div class="testi-avatar">RP</div>
+        <div><h5>Rakesh Patel</h5><span>Halol, Gujarat</span></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"I had given up hope with my PCOD issues. The personalized treatment here helped restore my cycle naturally without any side effects."</p>
+      <div class="testi-user">
+        <div class="testi-avatar">AM</div>
+        <div><h5>Anjali Mehta</h5><span>Patient since 2023</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<button type="submit">Submit Booking</button>
-</form>
+<!-- BOOKING FORM SECTION (Google Form Style) -->
+<section class="form-section" id="appointment">
+  <div class="form-container">
+    <div class="form-info reveal">
+      <span class="section-tag" style="background:rgba(20,184,166,0.15);color:var(--accent);">Book Appointment</span>
+      <h2>Connect <span>with us.</span></h2>
+      <p>Want to book a consultation, share your symptoms, or send a message? Fill the form. We read every submission and reply to most.</p>
+      <div class="contact-row">
+        <div class="row">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <div class="label">Email</div>
+            <div class="value">varmavinay2005@gmail.com</div>
+          </div>
+        </div>
+        <div class="row">
+          <i class="fas fa-phone"></i>
+          <div>
+            <div class="label">Phone</div>
+            <div class="value">+91 70160 53580</div>
+          </div>
+        </div>
+        <div class="row">
+          <i class="fas fa-clock"></i>
+          <div>
+            <div class="label">Working Hours</div>
+            <div class="value">Mon - Sat | 9:00 AM - 8:00 PM</div>
+          </div>
+        </div>
+        <div class="row">
+          <i class="fas fa-location-dot"></i>
+          <div>
+            <div class="label">Address</div>
+            <div class="value">Kanjari Road, Halol, Gujarat 389350</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
+    <div class="gform-card reveal">
+      <div class="gform-header">
+        <h3>Appointment Booking Form</h3>
+        <p>Divine Touch Homoeo Clinic</p>
+        <div class="gform-required">* Indicates required question</div>
+      </div>
 
-<div class="success" id="successMsg">
-Appointment booked successfully! Divine Touch Homoeo Clinic will contact you on WhatsApp to confirm.
-<br><br>
-<a href="https://wa.me/917016053580" target="_blank" class="btn">Chat on WhatsApp</a>
-</div>
+      <form id="bookingForm"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeH-iSOegTvYNSa-S-IG96svBr_TnwXOMkZD5hH8twkj3qnmQ/formResponse"
+        method="POST"
+        target="hidden_iframe">
 
-</div>
-</div>
+        <div class="gform-body">
+          <div class="gform-field">
+            <label>Patient Name <span>*</span></label>
+            <input type="text" name="entry.2005620554" placeholder="Your answer" required>
+          </div>
 
+          <div class="gform-field">
+            <label>Phone Number <span>*</span></label>
+            <input type="tel" name="entry.927310796" placeholder="Your answer" required>
+          </div>
+
+          <div class="gform-field">
+            <label>Patient Address <span>*</span></label>
+            <input type="text" name="entry.1065046570" placeholder="Your answer" required>
+          </div>
+
+          <div class="gform-field">
+            <label>Email Address <span>*</span></label>
+            <input type="email" name="entry.1045781291" placeholder="Your answer" required>
+          </div>
+
+          <div class="gform-field">
+            <label>Are you a new patient? <span>*</span></label>
+            <label class="gform-radio"><input type="radio" name="newPatient" value="Yes" required> Yes</label>
+            <label class="gform-radio"><input type="radio" name="newPatient" value="No"> No</label>
+            <label class="gform-radio"><input type="radio" name="newPatient" value="Maybe"> Maybe</label>
+          </div>
+
+          <div class="gform-field">
+            <label>Preferred consultation mode <span>*</span></label>
+            <label class="gform-radio"><input type="radio" name="mode" value="In-person" required> In-person visit</label>
+            <label class="gform-radio"><input type="radio" name="mode" value="Online"> Online consultation</label>
+            <label class="gform-radio"><input type="radio" name="mode" value="WhatsApp"> WhatsApp follow-up</label>
+          </div>
+
+          <div class="gform-field">
+            <label>Explain your problem in detail <span>*</span></label>
+            <textarea name="entry.839337160" placeholder="Please describe your symptoms, duration, and any past treatments (minimum 100 characters)" minlength="100" required></textarea>
+          </div>
+        </div>
+
+        <div class="gform-footer">
+          <button type="submit" class="gform-submit">Submit</button>
+          <button type="reset" class="gform-clear">Clear form</button>
+        </div>
+      </form>
+
+      <div class="gform-success" id="successMsg">
+        <i class="fas fa-circle-check"></i>
+        <h3>Appointment Booked Successfully!</h3>
+        <p>Divine Touch Homoeo Clinic will contact you on WhatsApp shortly to confirm your visit.</p>
+        <a href="https://wa.me/917016053580" target="_blank" class="btn"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      </div>
+
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-<p>📍 Shop No. 15, Vallabhdham Apartment, Kanjari Road, Near Bhavin Society, Halol, Gujarat 389350</p>
-<p>📞 +91 70160 53580 | ✉ varmavinay2005@gmail.com</p>
-<p>© 2026 Divine Touch Homoeo Clinic. All rights reserved.</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">
+        <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+        <div class="logo-text">
+          <div class="logo-title">Divine Touch</div>
+          <div class="logo-sub" style="color:#94a3b8;">Homoeo Clinic</div>
+        </div>
+      </div>
+      <p>Providing natural homeopathic care with compassion and personalized treatment plans in Halol, Gujarat.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/917016053580" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:varmavinay2005@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About Us</a>
+      <a href="#appointment">Book Appointment</a>
+    </div>
+    <div class="footer-col">
+      <h4>Treatments</h4>
+      <a href="#">Skin & Allergies</a>
+      <a href="#">Women's Health</a>
+      <a href="#">Child Wellness</a>
+      <a href="#">Mental Wellness</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p><i class="fas fa-location-dot"></i> Kanjari Road, Halol, Gujarat 389350</p>
+      <p><i class="fas fa-phone"></i> +91 70160 53580</p>
+      <p><i class="fas fa-envelope"></i> varmavinay2005@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Divine Touch Homoeo Clinic. All rights reserved. | Crafted with care for better health.
+  </div>
 </footer>
 
-<!-- WhatsApp Floating Icon -->
+<!-- WhatsApp -->
 <a href="https://wa.me/917016053580" target="_blank" class="whatsapp" aria-label="Chat on WhatsApp">
-<svg viewBox="0 0 32 32">
-<path d="M19.11 17.38c-.29-.15-1.71-.84-1.98-.94-.27-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.47-.87-.77-1.46-1.71-1.63-2-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.55-.46-.48-.65-.49l-.55-.01c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43s1.05 2.81 1.2 3c.15.19 2.07 3.16 5.01 4.43.7.3 1.24.48 1.66.61.7.22 1.34.19 1.84.12.56-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.34z"/>
-<path d="M16 3C9.37 3 4 8.37 4 15c0 2.65.87 5.1 2.34 7.08L4 29l7.12-2.29C13.04 27.58 14.49 28 16 28c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.33 0-2.62-.35-3.76-1.02l-.27-.16-4.22 1.36 1.38-4.11-.18-.28A9.94 9.94 0 016 15c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10z"/>
-</svg>
+  <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-function openModal(){
-document.getElementById("modal").style.display="flex";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-
-window.onclick=function(e){
-if(e.target==document.getElementById("modal")){
-closeModal();
-}
-};
-
-document.getElementById("bookingForm").addEventListener("submit",function(){
-setTimeout(function(){
-document.getElementById("bookingForm").style.display="none";
-document.getElementById("successMsg").style.display="block";
-},1000);
+// Loader
+window.addEventListener("load",()=>{
+  setTimeout(()=>document.getElementById("loader").classList.add("hide"),400);
 });
 
+// Nav scroll
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>{
+  nav.classList.toggle("scrolled",window.scrollY>30);
+});
+
+// Mobile menu
+document.getElementById("menuToggle").addEventListener("click",()=>{
+  document.getElementById("navLinks").classList.toggle("open");
+});
+document.querySelectorAll(".nav-links a").forEach(a=>{
+  a.addEventListener("click",()=>document.getElementById("navLinks").classList.remove("open"));
+});
+
+// Reveal on scroll
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target);}
+  });
+},{threshold:0.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+// Form submission
+document.getElementById("bookingForm").addEventListener("submit",function(e){
+  setTimeout(()=>{
+    document.getElementById("bookingForm").style.display="none";
+    document.getElementById("successMsg").classList.add("show");
+  },800);
+});
+
+// Secret admin access (5 logo clicks)
 let clicks=0;
-document.querySelector(".logo").addEventListener("click",function(){
-clicks++;
-if(clicks===5){
-window.location.href="https://vinayvarma07.github.io/vnyvrma.ai/admin.html";
-}
+let clickTimer;
+document.getElementById("logo").addEventListener("click",function(){
+  clicks++;
+  clearTimeout(clickTimer);
+  clickTimer=setTimeout(()=>clicks=0,2000);
+  if(clicks===5){
+    window.location.href="https://vinayvarma07.github.io/vnyvrma.ai/admin.html";
+  }
 });
 </script>
 
